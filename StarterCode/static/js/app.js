@@ -1,8 +1,13 @@
-// Set file path 
-// var data = "StarterCode/samples.json/"
+function getPlot(id) {
 
-// Fetch the JSON data and console log it
-d3.json("samples.json").then(function(data) {
-    console.log(data);
-  });
-  
+    d3.json("samples.json").then((data) => {
+        console.log(data)
+
+        var 
+    });
+
+
+
+
+
+}
