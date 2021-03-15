@@ -1,6 +1,10 @@
-function buildBarChart(sample) {
+d3.json("samples.json").then((data) => {
+    console.log(data);
+});
+
+function buildCharts(sample) {
     d3.json("samples.json").then((data) => {
-        console.log(data);
+
         var samples = data.samples;
         var resultsList = samples.filter(sampleObj => sampleObj.id == sample);
         var results = resultsList[0];
@@ -10,10 +14,27 @@ function buildBarChart(sample) {
         var otuLabels = results.otu_labels;
 
 
+
+
+
+
+
     });
 }
 
 
 
+
+
+
+
+
+
+
+
+
+// function buildMetadata(sample)
+
+// function buildDropDown(sample)
 
 
