@@ -13,7 +13,6 @@ function buildCharts(sample) {
 
         // Filter object by id
         var results = sampleInfo.filter(sampleObj => sampleObj.id == sample)[0];
-        // var results = resultsList[0];
         console.log(results)
 
         // Set variables for horizantal bar chart values
@@ -44,11 +43,36 @@ function buildCharts(sample) {
 
         Plotly.newPlot("bar", barData, barLayout);
 
+        // Build Bubble Chart
+        // var desired_max_marker_size = results.sample_values;
+        d3.json("samples.json").then((data) => {
+            var sampleInfo = data.samples;
+            var results = sampleInfo.filter(sampleObj => sampleObj.id == sample)[0];
+            
+            var bubbleData =  {
+                x: results.otu_ids,
+                y: results.sample_values,
+                mode: "markers",
+                text: results.otu_labels,
+                marker: {
+                    size: results.sample_values,
+                    sizemode: "area",
+                    color: results.otu_ids
+                 }
+            }; 
         
+            var layout = {
+                title: "Complete Sample Data"
+            };
+            Plotly.newPlot("bubble", bubbleData, layout);
+        });
+            
+            // Plotly.newPlot("bubble", bubbleData, layout);
+
     });
 }
 
-// function buildMetadata(sample)
+// Add Metadata to panel
 function buildMetadata(sample) {
     d3.json("samples.json").then((data) => {
         var sampleMeta = data.metadata;
@@ -64,20 +88,11 @@ function buildMetadata(sample) {
 
         });
     });
-
-
-
-
-
-
-
 }
 
 
 
-
-
-// function buildDropDown(sample)
+// Add sample names to drop down menu
 function init() {
     var dropDown = d3.selectAll("#selDataset");
 
