@@ -49,26 +49,23 @@ function buildCharts(sample) {
             var sampleInfo = data.samples;
             var results = sampleInfo.filter(sampleObj => sampleObj.id == sample)[0];
             
-            var bubbleData =  {
+            var bubbleData =  [{
                 x: results.otu_ids,
                 y: results.sample_values,
                 mode: "markers",
                 text: results.otu_labels,
                 marker: {
                     size: results.sample_values,
-                    sizemode: "area",
                     color: results.otu_ids
                  }
-            }; 
+            }]; 
         
             var layout = {
-                title: "Complete Sample Data"
+                xaxis: {title: "OTU IDs"}
             };
+
             Plotly.newPlot("bubble", bubbleData, layout);
         });
-            
-            // Plotly.newPlot("bubble", bubbleData, layout);
-
     });
 }
 
