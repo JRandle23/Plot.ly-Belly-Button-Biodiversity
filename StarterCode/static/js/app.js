@@ -1,3 +1,4 @@
+//  Read in csv and print data to console
 d3.json("samples.json").then((data) => {
     console.log(data);
 });
@@ -47,14 +48,34 @@ function buildCharts(sample) {
     });
 }
 
-
-
 // function buildMetadata(sample)
+function buildMetadata(sample) {
+    d3.json("samples.json").then((data) => {
+        var sampleMeta = data.metadata;
+        
+        var results = sampleMeta.filter(sampleObj => sampleObj.id == sample)[0];
+
+        var panelData = d3.selct("#sample-metadata");
+
+    });
+
+
+
+
+
+
+
+}
+
+
+
+
 
 // function buildDropDown(sample)
 function init() {
     var dropDown = d3.selectAll("#selDataset");
 
+    // Read in json and add sample names to a variable
     d3.json("samples.json").then((data) => {
         var sampleNames = data.names;
 
@@ -67,15 +88,14 @@ function init() {
 
         var firstSample = sampleNames[0];
         buildCharts(firstSample);
-        // buildMetadata(firstSample);
+        buildMetadata(firstSample);
 
     });
-   
 }
 
 function optionChanged(newSample) {
     buildCharts(newSample);
-    // buildMetadata(newSample);
+    buildMetadata(newSample);
 }
 
 init();
