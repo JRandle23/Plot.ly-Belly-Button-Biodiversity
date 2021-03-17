@@ -117,6 +117,3 @@ function optionChanged(newSample) {
 }
 
 init();
-
-
-
